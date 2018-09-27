@@ -1,7 +1,7 @@
 package com.poisonedyouth.ticketmanagementapp.service;
 
 import com.poisonedyouth.ticketmanagementapp.dao.Person;
-import com.poisonedyouth.ticketmanagementapp.dao.PersonRepository;
+import com.poisonedyouth.ticketmanagementapp.dao.PersonDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,26 +14,26 @@ import java.util.stream.StreamSupport;
 public class PersonService {
 
 	@Autowired
-	private PersonRepository personRepository;
+	private PersonDAO personDAO;
 
 	public List<Person> findAll() {
-		return StreamSupport.stream(personRepository.findAll().spliterator(), false).collect(Collectors.toList());
+		return StreamSupport.stream(personDAO.findAll().spliterator(), false).collect(Collectors.toList());
 	}
 
 	public Person save(Person person) {
-		return personRepository.save(person);
+		return personDAO.save(person);
 	}
 
 	public Person findById(long id) {
-		Optional<Person> existingPerson = personRepository.findById(id);
+		Optional<Person> existingPerson = personDAO.findById(id);
 		return existingPerson.orElse(null);
 	}
 
 	public void delete(Person person) {
-		personRepository.delete(person);
+		personDAO.delete(person);
 	}
 
 	public List<Person> findByLastNameOrEmail(String search) {
-		return personRepository.findPersonByLastNameContainingOrEmailContaining(search, search);
+		return personDAO.findPersonByLastNameContainingOrEmailContaining(search, search);
 	}
 }
