@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TicketDAO extends CrudRepository<Ticket, Long> {
 	
-	List<Ticket> findTicketByOwner(Person owner);
+	List<Ticket> findTicketByOwnerId(Long ownerId);
 }

@@ -31,7 +31,7 @@ public class TicketService {
 		ticketDAO.delete(ticket);
 	}
 
-	public List<Ticket> findByOwner(Person owner) {
-		return ticketDAO.findTicketByOwner(owner);
+	public List<Ticket> findByOwner(Long id) {
+		return ticketDAO.findTicketByOwnerId(id);
 	}
 }
